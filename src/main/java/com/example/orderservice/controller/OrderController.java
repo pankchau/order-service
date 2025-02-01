@@ -4,6 +4,7 @@ import com.example.orderservice.model.Order;
 import com.example.orderservice.service.OrderService;
 import jakarta.websocket.server.PathParam;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("api/v1")
 @RequiredArgsConstructor
+@Slf4j
 public class OrderController {
 
     private final OrderService orderService;
@@ -42,6 +44,7 @@ public class OrderController {
 
     @GetMapping("/version")
     public ResponseEntity<String> getCurrentVersion(){
+        log.info("Current version is : {}", buildVersion);
         return ResponseEntity
                 .status(HttpStatus.OK)
                 .body(buildVersion);
